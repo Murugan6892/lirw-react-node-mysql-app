@@ -1,16 +1,13 @@
 pipeline {
+
     agent {
         label 'prod-server'
-    }
-
-    tools {
-        nodejs 'nodejs'
     }
 
     environment {
         APP_NAME = 'lirw-react-node-mysql-app'
     }
-  
+
     stages {
 
         stage('Clean Workspace') {
@@ -26,7 +23,14 @@ pipeline {
                 url: 'https://github.com/Murugan6892/lirw-react-node-mysql-app.git'
             }
         }
-      
+
+        stage('Check Node and NPM Version') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
+            }
+        }
+
         stage('Install Backend Dependencies') {
             steps {
                 dir('backend') {
@@ -42,7 +46,7 @@ pipeline {
                 }
             }
         }
-      
+
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
@@ -51,7 +55,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to Prod Server') {
+        stage('Deploy Backend Application') {
             steps {
                 dir('backend') {
                     sh '''
@@ -61,16 +65,18 @@ pipeline {
                 }
             }
         }
-      
+
     }
 
     post {
+
         success {
-            echo 'Pipeline executed successfully.'
+            echo 'Application deployed successfully on prod-server.'
         }
 
         failure {
             echo 'Pipeline failed.'
         }
+
     }
 }
