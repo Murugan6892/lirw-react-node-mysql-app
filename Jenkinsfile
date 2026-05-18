@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-        label 'prod-server'
+        label 'test-server'
     }
 
     environment {
