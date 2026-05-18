@@ -19,7 +19,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                credentialsId: 'github-pat',
+                credentialsId: 'githun-test-pat',
                 url: 'https://github.com/Murugan6892/lirw-react-node-mysql-app.git'
             }
         }
