@@ -8,7 +8,7 @@ pipeline {
 
         DEPLOY_USER = 'ubuntu'
         DEPLOY_HOST = '100.48.16.230'
-        DEPLOY_SSH = 'ec2-deploy-key'
+        DEPLOY_SSH = 'test-server-SSH'
 
         REMOTE_BASE = '/home/ubuntu/lirw-app'
 
